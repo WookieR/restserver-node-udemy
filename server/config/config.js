@@ -19,7 +19,7 @@ let urlDb;
 if (process.env.NODE_ENV === 'dev') {
     urlDb = 'mongodb://localhost:27017/delivery-db';
 } else {
-    urlDb = 'mongodb+srv://wookie:85bpArt0E8Sd3sZU@cluster0.tnpsx.mongodb.net/delivery-db';
+    urlDb = process.env.MONGO_URI;
 }
 
 process.env.URLDB = urlDb;
