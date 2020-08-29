@@ -1,6 +1,8 @@
 require('./config/config');
 
 const express = require('express');
+const mongoose = require('mongoose');
+
 const app = express();
 const bodyParser = require('body-parser')
 
@@ -11,34 +13,20 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
+// =============== ROUTES ===============
+
+app.use(require('./routes/usuarios'));
+
 // ======================================
 
-app.get('/usuario', function(req, res) {
-    res.json('get Usuario');
-});
-
-app.post('/usuario', function(req, res) {
-    let body = req.body;
-
-    if (body.nombre === undefined) {
-        res.status(400).json({
-            ok: false,
-            message: 'El nombre es necesario'
-        });
-    } else {
-        res.status(200).json({
-            persona: body
-        });
-    }
-});
-
-app.put('/usuario/:id', function(req, res) {
-    let id = req.params.id;
-    res.json(`put Usuario ${id}`);
-});
-
-app.delete('/usuario', function(req, res) {
-    res.json('delete Usuario');
+mongoose.connect(process.env.URLDB, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+    useCreateIndex: true
+}, (err, res) => {
+    if (err) throw err;
+    console.log('Base de datos online');
 });
 
 app.listen(process.env.PORT, () => {
