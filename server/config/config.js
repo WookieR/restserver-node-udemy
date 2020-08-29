@@ -5,6 +5,18 @@
 process.env.PORT = process.env.PORT || 3000;
 
 // =========================
+//      Vencimiento Token
+// =========================
+
+process.env.CADUCIDAD_TOKEN = 3600000;
+
+// =========================
+//      Seed Token
+// =========================
+
+process.env.SEED = process.env.SEED || 'clave-secreta';
+
+// =========================
 //      Entorno
 // =========================
 

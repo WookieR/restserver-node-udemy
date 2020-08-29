@@ -15,7 +15,7 @@ app.use(bodyParser.json())
 
 // =============== ROUTES ===============
 
-app.use(require('./routes/usuarios'));
+app.use(require('./routes/index'));
 
 // ======================================
 
